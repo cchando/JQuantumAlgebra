@@ -1,5 +1,6 @@
 # JQuantumAlgebra
-World's tersest quantum algebra library
+
+Quite possibly the most terse quantum algebra library that no one asked for
 
 ## Creating States
 - K x creates state |x>, where x is a space-separated binary string
