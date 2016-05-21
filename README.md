@@ -1,6 +1,6 @@
 # JQuantumAlgebra
 
-The goal is to build the most terse quantum algebra library that nobody asked for.
+The most terse quantum algebra library that nobody asked for.
 
 ## Creating States
 - K x creates state |x>, where x is a space-separated binary string
