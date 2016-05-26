@@ -20,3 +20,15 @@ measureQ =: 4 : ' +/ (*:((I. -.(x {"1 binarylist y)) { y))' NB. Not used yet
 permMat =: +/@((K"1@(#:@])) mp"2 (KtoB"2@(compbasis@(2^.#@])))) NB. Takes a permutation of a domain and produces a mappping
 permOracle =: 1 : 'permMat ((2*((i.2^y),(i.2^y))) + ((u (i.2^y)),(-.(u (i.2^y)))))' NB. If f is a permutation, permOracle produces mapping
 createOracle =: 1 : '+/ (compbasisprojs y) tp"2 (((-.(K"0(u (i.(2^y))))) mp (B 1)) + ((K"0(u (i.(2^y)))) mp (B 0)))' 
+
+measureQubit =: 4 : 0 NB. x measureQubit y measures the x-th (zero-indexed) qubit of system y, this is the only verb I refuse to write tacitly
+	binlist =. binarylist y
+	qubitPos =. x {"1 binlist
+	qubitProb =. (I. (-. qubitPos)) { y
+	zeroProb =. +/ (*: | ,qubitProb)
+	measurement =. -.((?0) <: zeroProb)
+	if. measurement = 0
+	do. (|:((-.qubitPos) % (%:zeroProb))) * y
+	else. (|:(qubitPos % (%:(1-zeroProb)))) * y
+	end.  
+)
