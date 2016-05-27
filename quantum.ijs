@@ -2,7 +2,9 @@ ID =: =@(i.@(2&^)) NB. ID n produces an n-qubit identity matrix, ID 3 will produ
 tp =: ,./^:2@:(*/) NB. Tensor product
 mp =: +/ . * NB. Matrix product 
 xor =: 2|+ NB. XOR/addition mod 2
-one =: 1 1$ 1 NB. Single element matrix
+ZERO =: (K 0) mp (B 0)
+ONE =: (K 1) mp (B 1)
+PHASE =: ZERO + ONE * (^@(0j1*]))
 binarylist =: #:@(i.@#) NB. binarylist n produces a list of binary values for the interval [0,n-1]
 K =: ((2^#@]),1:) $ #.@]=(i.@(2^#@])) NB. Ket, takes a space-separated binary string q1 q2 ... qn and produces state |q1>|q2>...|qn>
 B =: (1:,(2^#@])) $ #.@]=(i.@(2^#@])) NB. Bra, operates similar to ket producing <q1|<q2|...<qn|
