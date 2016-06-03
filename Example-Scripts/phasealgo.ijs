@@ -57,3 +57,33 @@ NB. Algorithm will estimate x for an operater U acting on an eigenstate with eig
 
 NB. We have 100% probability of measuring 2 in the input register
 NB. Do 2/2^n where n is the number of qubits in the input = 2/8 = 1/4...we've estimated the correct value
+
+NB. Same process for pi rotation gate:
+   U =: PHASE 1p1
+   U2 =: U^2
+   U4 =: U^4
+   
+   c1 =: (ONE tp (ID 2) tp U4) + (ZERO tp (ID 3))
+   c2 =: (ID 1) tp ((ONE tp (ID 1) tp U2) + (ZERO tp (ID 2)))
+   c3 =: (ID 2) tp ((ONE tp U) + (ZERO tp (ID 1)))
+   usystem =: c3 mp c2 mp c1 mp system
+   iusystem =: iqft mp usystem
+   detailState iusystem
+┌──┬───────┬─────────────────────────┐
+│ 0│0 0 0 0│                        0│
+│ 1│0 0 0 1│            0j6.12323e_17│
+│ 2│0 0 1 0│                        0│
+│ 3│0 0 1 1│ _6.93889e_17j2.77556e_17│
+│ 4│0 1 0 0│                        0│
+│ 5│0 1 0 1│_1.62668e_16j_5.55112e_17│
+│ 6│0 1 1 0│                        0│
+│ 7│0 1 1 1│_3.33067e_16j_3.60822e_16│
+│ 8│1 0 0 0│                        0│
+│ 9│1 0 0 1│           1j_4.28626e_16│ NB. 100% chance of measuring 4
+│10│1 0 1 0│                        0│
+│11│1 0 1 1│ _1.11022e_16j7.21645e_16│
+│12│1 1 0 0│                        0│
+│13│1 1 0 1│ _2.81421e_16j3.88578e_16│
+│14│1 1 1 0│                        0│
+│15│1 1 1 1│ _3.88578e_16j2.22045e_16│
+└──┴───────┴─────────────────────────┘
