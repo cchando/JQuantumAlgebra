@@ -41,7 +41,7 @@ permOracle =: {{permMat ((2*a),a) + (, -.) u a=.i.2^y}}  NB. adv; takes a permut
 createOracle =: {{+/ compBasisProjs@y tp"2 -. +&((K"0 u i.2^y) mp B)/1 0}}  NB. adv; if f is a permutation, permOracle produces mapping
 
 measureQubit=: {{ 
-NB. x measureQubit y measures the x-th (zero-indexed) qubit of system y, this is the only verb I refuse to write tacitly
+NB. x measureQubit y measures the x-th (zero-indexed) qubit of system y
 zp=.+/*:|,qp=.I.-.x{"1#:i.#y)             NB. zeroProb; qubitPos
 y * |: (qp"_ %: %:@-.@zp)`(-.@qp % %:@zp)@.(zp>:?0) y
 }}
